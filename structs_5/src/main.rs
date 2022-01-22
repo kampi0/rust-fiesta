@@ -8,6 +8,18 @@ impl Rectangle {
     fn area(&self) -> u32{
         self.width * self.height
     }
+    fn width(&self) -> bool {
+        self.width > 0
+    }
+    fn can_hold(&self, other: &Rectangle) -> bool {
+        self.width > other.width && self.height > other.height
+    }
+    fn square (size: u32) -> Rectangle{
+        Rectangle {
+            width: size,
+            height:size,
+        }
+    }
 }
 fn main() {
     println!("Hello, structs!");
@@ -16,54 +28,20 @@ fn main() {
         width: 30,
         height: 50,
     };
-    println!("
-    The are of rectangle is {} square pixels", 
-rect1.area()
-);
+    let rect2 = Rectangle{
+        width: 10,
+        height: 40,
+    };
+    let rect3 = Rectangle {
+        width: 60,
+        height: 45,
+    };
+
+    if rect1.width(){
+        println!(" the rectangle has a nonzero width; it is {}", rect1.width);
+    }
+    println!("can rect1 hold rect2? {}",rect1.can_hold(&rect2));
+    println!("can rect2 hold rect3? {}", rect2.can_hold(&rect3));
+    let sq =Rectangle::square(3);
+    println!(" The square area: {:?}", sq);
 }
-
-    // let scale = 2;
-    // let rect2 = Rectangle{
-    //     width: dbg!(30 * scale),
-    //     height: 50,
-    // };
-
-    // dbg!(&rect2);
-
-//     println!(
-//         "the area of rectangle is {} square pixels.", 
-//         area(&rect1)
-        
-//     );
-//     println!("rect1 is {:#?}", rect1);
-// }
-// fn area(rectangle: &Rectangle) -> u32 {
-//     rectangle.width * rectangle.height
-//     }
-//     ################################################
-    // let mut user1 = User {
-    //     email: String::from("someone@examle.com"),
-    //     username: String::from("someusername123"),
-    //     active: true,
-    //     sign_in_count: 1,
-    // };
-
-    // let user2 = User {
-    //     active: user1.active,
-    //     username: user1.username,
-    //     email: String::from("another@example.com"),
-    //     sign_in_count: user1.sign_in_count,
-    // };
-    // user1.email = String::from("anotheremail@example.com");
-    // let black = Color(0, 0, 0);
-    // let origin = Point(0, 0, 0);
-// }
-
-//  fn build_user(email: String, username: String) -> User {
-//      User {
-//          email,
-//          username,
-//          active: true,
-//          sign_in_count: 1,
-//      }
-//  }
